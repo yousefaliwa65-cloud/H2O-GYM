@@ -21,6 +21,8 @@
     --gold: #ffd700;
   }
 
+
+  
   html { scroll-behavior: smooth; height: 100%; }
 
   body {
@@ -145,42 +147,7 @@
     gap: 1rem;
   }
 
-  /* Music Toggle Button */
-  .music-btn {
-    background: rgba(0, 198, 255, 0.08);
-    border: 1.5px solid rgba(0, 198, 255, 0.35);
-    color: var(--accent);
-    padding: 0.5rem 1rem;
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    position: relative;
-    overflow: hidden;
-  }
 
-  .music-btn.playing {
-    border-color: var(--gold);
-    color: var(--gold);
-    box-shadow: 0 0 20px rgba(255,215,0,0.4);
-    animation: musicPulse 1.5s ease-in-out infinite;
-  }
-
-  @keyframes musicPulse {
-    0%, 100% { box-shadow: 0 0 15px rgba(255,215,0,0.3); }
-    50% { box-shadow: 0 0 35px rgba(255,215,0,0.7), 0 0 60px rgba(0,198,255,0.3); }
-  }
-
-  .music-icon { font-size: 1rem; transition: transform 0.3s; }
-  .music-btn.playing .music-icon { animation: musicBounce 0.5s ease infinite alternate; }
-  @keyframes musicBounce { from { transform: scale(1) rotate(0deg); } to { transform: scale(1.3) rotate(15deg); } }
 
   .nav-cta {
     background: transparent;
@@ -1237,6 +1204,9 @@
     .back-to-top { bottom: 1rem; right: 1rem; width: 44px; height: 44px; font-size: 1.1rem; }
   }
   </style>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 <body>
 <canvas id="bg-canvas"></canvas>
@@ -1261,11 +1231,7 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="music-btn" id="musicToggle" onclick="toggleMusic()">
-      <span class="music-icon" id="musicIcon">🎵</span>
-      <span id="musicLabel">GYM MUSIC</span>
-    </button>
-    <button class="nav-cta" onclick="document.getElementById('social-links').scrollIntoView({behavior:'smooth'})">Join Us</button>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Join Us</button>
   </div>
 </nav>
 
@@ -1483,31 +1449,29 @@
     <div class="reveal">
       <h2 class="contact-info-title">Get In Touch</h2>
       <div class="contact-detail">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-detail-label">Location</div>
-          <div class="contact-detail-value">H2O Gym, New Cairo, Egypt</div>
-        </div>
+       
+       
       </div>
       <div class="contact-detail">
         <div class="contact-icon">📞</div>
         <div>
           <div class="contact-detail-label">Phone</div>
-          <div class="contact-detail-value">+20 100 000 0000</div>
+          <h3>+20 0110000000</h3>
         </div>
       </div>
       <div class="contact-detail">
         <div class="contact-icon">✉️</div>
         <div>
           <div class="contact-detail-label">Email</div>
-          <div class="contact-detail-value">info@h2ogym.eg</div>
+          <h3>info@h20.com</h3>
         </div>
       </div>
       <div class="contact-detail">
         <div class="contact-icon">🕐</div>
         <div>
           <div class="contact-detail-label">Hours</div>
-          <div class="contact-detail-value">Sat–Thu: 6am – 11pm<br>Friday: 8am – 10pm</div>
+          <h3>Open 24 Hours, 7 Days a Week</h3>
+    <a>Train Anytime. Achieve Everything.</a>
         </div>
       </div>
     </div>
@@ -1558,52 +1522,34 @@
     <div class="footer-logo-text">H<span class="gold-2">2</span>O GYM</div>
   </div>
   <div class="footer-copy">© 2026 H2O Gym Egypt. All rights reserved.</div>
-  <div class="social-links" id="social-links">
-    <a class="social-link" href="https://www.facebook.com" target="_blank">📘 Facebook</a>
-    <a class="social-link" href="https://www.instagram.com" target="_blank">📸 Instagram</a>
-    <a class="social-link" href="https://wa.me/201000000000" target="_blank">💬 WhatsApp</a>
-  </div>
+  
+<div class="social-links">
+    <a href="https://facebook.com/YOURPAGE"
+       target="_blank"
+       class="social-link">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <a href="https://instagram.com/YOURPAGE"
+       target="_blank"
+       class="social-link">
+        <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://wa.me/201XXXXXXXXX"
+       target="_blank"
+       class="social-link">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</div>
 
 </footer>
 
 
 <script>
 
-// ===== MUSIC TOGGLE =====
-let musicAudio = null;
-let musicPlaying = false;
 
-// Use royalty-free gym/workout music from a public source
-const MUSIC_URL = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3';
 
-function toggleMusic() {
-  const btn = document.getElementById('musicToggle');
-  const icon = document.getElementById('musicIcon');
-  const label = document.getElementById('musicLabel');
-
-  if (!musicAudio) {
-    musicAudio = new Audio(MUSIC_URL);
-    musicAudio.loop = true;
-    musicAudio.volume = 0.45;
-  }
-
-  if (!musicPlaying) {
-    musicAudio.play().then(() => {
-      musicPlaying = true;
-      btn.classList.add('playing');
-      icon.textContent = '🎶';
-      label.textContent = 'MUSIC ON';
-    }).catch(() => {
-      label.textContent = 'TAP AGAIN';
-    });
-  } else {
-    musicAudio.pause();
-    musicPlaying = false;
-    btn.classList.remove('playing');
-    icon.textContent = '🎵';
-    label.textContent = 'GYM MUSIC';
-  }
-}
 
 // ===== BACK TO TOP VISIBILITY =====
 const backToTop = document.getElementById('backToTop');
